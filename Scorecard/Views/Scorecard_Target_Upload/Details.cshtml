@@ -1,0 +1,90 @@
+﻿@model Scorecard.Models.t_Scorecard_Target_Details_Upload
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Period)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Period)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SiteCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SiteCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinorCatID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinorCatID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Target)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Target)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Budget)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Budget)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Target2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Target2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Budget2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Budget2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChangedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChangedDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Recid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

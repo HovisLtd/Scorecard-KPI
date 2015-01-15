@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Scorecard.Models.t_Scorecard_Details>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Week)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SiteCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.t_Scorecard_Master_Categories.MasterCatCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.t_Scorecard_Minor_Categories.MinorCatCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Actual)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Target)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChangedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChangedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Confirmed)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Week)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SiteCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.t_Scorecard_Master_Categories.MasterCatCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.t_Scorecard_Minor_Categories.MinorCatCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Actual)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Target)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChangedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChangedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Confirmed)
+        </td>
+ 
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Recid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Recid }) 
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.Recid })*@
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Import";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Import</h2>
+<h3>@ViewBag.Message</h3>
+
+@using (Html.BeginForm("ImportExcelFileToDatabase", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        <input type="file" id="FileUpload" name="FileUpload" required data-val="true" data-val-required="please select a file"/>
+        <input type="submit" id="Submit" class="Submit" value="Upload" title="Click to upload file" />
+    </div>
+    @*<table>
+        <tr><td>Excel file</td><td><input type="file" id="FileUpload1" name="FileUpload1" /></td></tr>
+        <tr><td></td><td><input type="submit" id="Submit" name="Submit" value="Submit" /></td></tr>
+    </table>*@
+}
+
+

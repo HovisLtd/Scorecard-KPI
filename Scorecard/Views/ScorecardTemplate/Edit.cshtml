@@ -1,0 +1,79 @@
+﻿@model Scorecard.Models.t_Scorecard_Master_Template
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4></h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Recid)
+        @Html.HiddenFor(model => model.Comments)
+        @Html.HiddenFor(model => model.LastChangedBy)
+        @Html.HiddenFor(model => model.LastChangedDate)
+        @Html.HiddenFor(model => model.Confirmed)
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SiteCode, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("SiteCode", String.Empty)
+                @Html.ValidationMessageFor(model => model.SiteCode)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MasterCatID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MasterCatID", String.Empty)
+                @Html.ValidationMessageFor(model => model.MasterCatID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MinorCatID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MinorCatID", String.Empty)
+                @Html.ValidationMessageFor(model => model.MinorCatID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Actual, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Actual)
+                @Html.ValidationMessageFor(model => model.Actual)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Target, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Target)
+                @Html.ValidationMessageFor(model => model.Target)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

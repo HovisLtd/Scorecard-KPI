@@ -1,0 +1,469 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HovisDWModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="t_Scorecard_Details">
+          <Key>
+            <PropertyRef Name="Recid" />
+          </Key>
+          <Property Name="Recid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Week" Type="int" />
+          <Property Name="SiteCode" Type="varchar" MaxLength="4" />
+          <Property Name="MasterCatID" Type="int" />
+          <Property Name="MinorCatID" Type="int" />
+          <Property Name="Actual" Type="float" />
+          <Property Name="Target" Type="float" />
+          <Property Name="Comments" Type="varchar(max)" />
+          <Property Name="ChangedBy" Type="varchar" MaxLength="255" />
+          <Property Name="ChangedDate" Type="datetime" />
+          <Property Name="Confirmed" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="t_Scorecard_Master_Categories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MasterCatCode" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_Scorecard_Master_Template">
+          <Key>
+            <PropertyRef Name="Recid" />
+          </Key>
+          <Property Name="Recid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiteCode" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="MasterCatID" Type="int" Nullable="false" />
+          <Property Name="MinorCatID" Type="int" Nullable="false" />
+          <Property Name="Actual" Type="float" />
+          <Property Name="Target" Type="float" />
+          <Property Name="Comments" Type="varchar(max)" />
+          <Property Name="LastChangedBy" Type="varchar" MaxLength="255" />
+          <Property Name="LastChangedDate" Type="datetime" />
+          <Property Name="Confirmed" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="t_Scorecard_Master_UserSites">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserSiteCode" Type="varchar" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_Scorecard_Minor_Categories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MinorCatCode" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_Scorecard_Target_Details_Upload">
+          <Key>
+            <PropertyRef Name="Recid" />
+          </Key>
+          <Property Name="Recid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Period" Type="int" />
+          <Property Name="SiteCode" Type="varchar" MaxLength="4" />
+          <Property Name="MinorCatID" Type="int" />
+          <Property Name="Target" Type="float" />
+          <Property Name="Budget" Type="float" />
+          <Property Name="Target2" Type="float" />
+          <Property Name="Budget2" Type="float" />
+          <Property Name="ChangedDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HovisDW.dbo.v_Hovis_Calendar' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_Hovis_Calendar">
+          <Key>
+            <PropertyRef Name="CalendarDate" />
+            <PropertyRef Name="FinancialYear" />
+            <PropertyRef Name="FinancialQtr" />
+            <PropertyRef Name="FinancialPeriod" />
+            <PropertyRef Name="FinancialWeek" />
+          </Key>
+          <Property Name="CalendarDate" Type="datetime" Nullable="false" />
+          <Property Name="CalendarDateChar" Type="varchar" MaxLength="30" />
+          <Property Name="FinancialYear" Type="smallint" Nullable="false" />
+          <Property Name="FinancialQtr" Type="smallint" Nullable="false" />
+          <Property Name="FinancialPeriod" Type="smallint" Nullable="false" />
+          <Property Name="FinancialWeek" Type="smallint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HovisDW.dbo.v_PTLStaff_MasterData_Plants' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_PTLStaff_MasterData_Plants">
+          
+          <Key>
+            <PropertyRef Name="Plant" />
+          </Key>
+          <Property Name="AutoIDCode" Type="int" Nullable="false" />
+          <Property Name="Plant" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="PlantDesc" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityContainer Name="HovisDWModelStoreContainer">
+          <EntitySet Name="t_Scorecard_Details" EntityType="Self.t_Scorecard_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_Scorecard_Master_Categories" EntityType="Self.t_Scorecard_Master_Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_Scorecard_Master_Template" EntityType="Self.t_Scorecard_Master_Template" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_Scorecard_Master_UserSites" EntityType="Self.t_Scorecard_Master_UserSites" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_Scorecard_Minor_Categories" EntityType="Self.t_Scorecard_Minor_Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_Scorecard_Target_Details_Upload" EntityType="Self.t_Scorecard_Target_Details_Upload" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="v_Hovis_Calendar" EntityType="Self.v_Hovis_Calendar" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_Hovis_Calendar].[CalendarDate] AS [CalendarDate], 
+    [v_Hovis_Calendar].[CalendarDateChar] AS [CalendarDateChar], 
+    [v_Hovis_Calendar].[FinancialYear] AS [FinancialYear], 
+    [v_Hovis_Calendar].[FinancialQtr] AS [FinancialQtr], 
+    [v_Hovis_Calendar].[FinancialPeriod] AS [FinancialPeriod], 
+    [v_Hovis_Calendar].[FinancialWeek] AS [FinancialWeek]
+    FROM [dbo].[v_Hovis_Calendar] AS [v_Hovis_Calendar]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_PTLStaff_MasterData_Plants" EntityType="Self.v_PTLStaff_MasterData_Plants" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_PTLStaff_MasterData_Plants].[AutoIDCode] AS [AutoIDCode], 
+    [v_PTLStaff_MasterData_Plants].[Plant] AS [Plant], 
+    [v_PTLStaff_MasterData_Plants].[PlantDesc] AS [PlantDesc]
+    FROM [dbo].[v_PTLStaff_MasterData_Plants] AS [v_PTLStaff_MasterData_Plants]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HovisDWModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="HovisDWEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="t_Scorecard_Details" EntityType="HovisDWModel.t_Scorecard_Details" />
+          <EntitySet Name="t_Scorecard_Master_Template" EntityType="HovisDWModel.t_Scorecard_Master_Template" />
+          <EntitySet Name="t_Scorecard_Master_Categories" EntityType="HovisDWModel.t_Scorecard_Master_Categories" />
+          <EntitySet Name="t_Scorecard_Minor_Categories" EntityType="HovisDWModel.t_Scorecard_Minor_Categories" />
+          <AssociationSet Name="t_Scorecard_Master_Categoriest_Scorecard_Master_Template" Association="HovisDWModel.t_Scorecard_Master_Categoriest_Scorecard_Master_Template">
+            <End Role="t_Scorecard_Master_Categories" EntitySet="t_Scorecard_Master_Categories" />
+            <End Role="t_Scorecard_Master_Template" EntitySet="t_Scorecard_Master_Template" />
+          </AssociationSet>
+          <AssociationSet Name="t_Scorecard_Minor_Categoriest_Scorecard_Master_Template" Association="HovisDWModel.t_Scorecard_Minor_Categoriest_Scorecard_Master_Template">
+            <End Role="t_Scorecard_Minor_Categories" EntitySet="t_Scorecard_Minor_Categories" />
+            <End Role="t_Scorecard_Master_Template" EntitySet="t_Scorecard_Master_Template" />
+          </AssociationSet>
+          <EntitySet Name="v_PTLStaff_MasterData_Plants" EntityType="HovisDWModel.v_PTLStaff_MasterData_Plants" />
+          <AssociationSet Name="v_PTLStaff_MasterData_Plantst_Scorecard_Master_Template" Association="HovisDWModel.v_PTLStaff_MasterData_Plantst_Scorecard_Master_Template">
+            <End Role="v_PTLStaff_MasterData_Plants" EntitySet="v_PTLStaff_MasterData_Plants" />
+            <End Role="t_Scorecard_Master_Template" EntitySet="t_Scorecard_Master_Template" />
+          </AssociationSet>
+          <EntitySet Name="v_Hovis_Calendar" EntityType="HovisDWModel.v_Hovis_Calendar" />
+          <AssociationSet Name="t_Scorecard_Master_Categoriest_Scorecard_Details" Association="HovisDWModel.t_Scorecard_Master_Categoriest_Scorecard_Details">
+            <End Role="t_Scorecard_Master_Categories" EntitySet="t_Scorecard_Master_Categories" />
+            <End Role="t_Scorecard_Details" EntitySet="t_Scorecard_Details" />
+          </AssociationSet>
+          <AssociationSet Name="t_Scorecard_Minor_Categoriest_Scorecard_Details" Association="HovisDWModel.t_Scorecard_Minor_Categoriest_Scorecard_Details">
+            <End Role="t_Scorecard_Minor_Categories" EntitySet="t_Scorecard_Minor_Categories" />
+            <End Role="t_Scorecard_Details" EntitySet="t_Scorecard_Details" />
+          </AssociationSet>
+          <EntitySet Name="t_Scorecard_Master_UserSites" EntityType="HovisDWModel.t_Scorecard_Master_UserSites" />
+          <AssociationSet Name="v_PTLStaff_MasterData_Plantst_Scorecard_Master_UserSites" Association="HovisDWModel.v_PTLStaff_MasterData_Plantst_Scorecard_Master_UserSites">
+            <End Role="v_PTLStaff_MasterData_Plants" EntitySet="v_PTLStaff_MasterData_Plants" />
+            <End Role="t_Scorecard_Master_UserSites" EntitySet="t_Scorecard_Master_UserSites" />
+          </AssociationSet>
+          <EntitySet Name="t_Scorecard_Target_Details_Upload" EntityType="HovisDWModel.t_Scorecard_Target_Details_Upload" />
+        </EntityContainer>
+        <EntityType Name="t_Scorecard_Details">
+          <Key>
+            <PropertyRef Name="Recid" />
+          </Key>
+          <Property Name="Recid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Week" Type="Int32" />
+          <Property Name="SiteCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="MasterCatID" Type="Int32" />
+          <Property Name="MinorCatID" Type="Int32" />
+          <Property Name="Actual" Type="Double" />
+          <Property Name="Target" Type="Double" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ChangedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ChangedDate" Type="DateTime" Precision="3" />
+          <Property Name="Confirmed" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="t_Scorecard_Master_Categories" Relationship="HovisDWModel.t_Scorecard_Master_Categoriest_Scorecard_Details" FromRole="t_Scorecard_Details" ToRole="t_Scorecard_Master_Categories" />
+          <NavigationProperty Name="t_Scorecard_Minor_Categories" Relationship="HovisDWModel.t_Scorecard_Minor_Categoriest_Scorecard_Details" FromRole="t_Scorecard_Details" ToRole="t_Scorecard_Minor_Categories" />
+        </EntityType>
+        <EntityType Name="t_Scorecard_Master_Template">
+          <Key>
+            <PropertyRef Name="Recid" />
+          </Key>
+          <Property Name="Recid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteCode" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="MasterCatID" Type="Int32" Nullable="false" />
+          <Property Name="MinorCatID" Type="Int32" Nullable="false" />
+          <Property Name="Actual" Type="Double" />
+          <Property Name="Target" Type="Double" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LastChangedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="LastChangedDate" Type="DateTime" Precision="3" />
+          <Property Name="Confirmed" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="t_Scorecard_Master_Categories" Relationship="HovisDWModel.t_Scorecard_Master_Categoriest_Scorecard_Master_Template" FromRole="t_Scorecard_Master_Template" ToRole="t_Scorecard_Master_Categories" />
+          <NavigationProperty Name="t_Scorecard_Minor_Categories" Relationship="HovisDWModel.t_Scorecard_Minor_Categoriest_Scorecard_Master_Template" FromRole="t_Scorecard_Master_Template" ToRole="t_Scorecard_Minor_Categories" />
+          <NavigationProperty Name="v_PTLStaff_MasterData_Plants" Relationship="HovisDWModel.v_PTLStaff_MasterData_Plantst_Scorecard_Master_Template" FromRole="t_Scorecard_Master_Template" ToRole="v_PTLStaff_MasterData_Plants" />
+        </EntityType>
+        <EntityType Name="t_Scorecard_Master_Categories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MasterCatCode" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="t_Scorecard_Master_Template" Relationship="HovisDWModel.t_Scorecard_Master_Categoriest_Scorecard_Master_Template" FromRole="t_Scorecard_Master_Categories" ToRole="t_Scorecard_Master_Template" />
+          <NavigationProperty Name="t_Scorecard_Details" Relationship="HovisDWModel.t_Scorecard_Master_Categoriest_Scorecard_Details" FromRole="t_Scorecard_Master_Categories" ToRole="t_Scorecard_Details" />
+        </EntityType>
+        <EntityType Name="t_Scorecard_Minor_Categories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MinorCatCode" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="t_Scorecard_Master_Template" Relationship="HovisDWModel.t_Scorecard_Minor_Categoriest_Scorecard_Master_Template" FromRole="t_Scorecard_Minor_Categories" ToRole="t_Scorecard_Master_Template" />
+          <NavigationProperty Name="t_Scorecard_Details" Relationship="HovisDWModel.t_Scorecard_Minor_Categoriest_Scorecard_Details" FromRole="t_Scorecard_Minor_Categories" ToRole="t_Scorecard_Details" />
+        </EntityType>
+        <Association Name="t_Scorecard_Master_Categoriest_Scorecard_Master_Template">
+          <End Type="HovisDWModel.t_Scorecard_Master_Categories" Role="t_Scorecard_Master_Categories" Multiplicity="1" />
+          <End Type="HovisDWModel.t_Scorecard_Master_Template" Role="t_Scorecard_Master_Template" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Scorecard_Master_Categories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="t_Scorecard_Master_Template">
+              <PropertyRef Name="MasterCatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="t_Scorecard_Minor_Categoriest_Scorecard_Master_Template">
+          <End Type="HovisDWModel.t_Scorecard_Minor_Categories" Role="t_Scorecard_Minor_Categories" Multiplicity="1" />
+          <End Type="HovisDWModel.t_Scorecard_Master_Template" Role="t_Scorecard_Master_Template" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Scorecard_Minor_Categories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="t_Scorecard_Master_Template">
+              <PropertyRef Name="MinorCatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="v_PTLStaff_MasterData_Plants">
+          <Key>
+            <PropertyRef Name="Plant" />
+          </Key>
+          <Property Name="AutoIDCode" Type="Int32" Nullable="false" />
+          <Property Name="Plant" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PlantDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="t_Scorecard_Master_Template" Relationship="HovisDWModel.v_PTLStaff_MasterData_Plantst_Scorecard_Master_Template" FromRole="v_PTLStaff_MasterData_Plants" ToRole="t_Scorecard_Master_Template" />
+          <NavigationProperty Name="t_Scorecard_Master_UserSites" Relationship="HovisDWModel.v_PTLStaff_MasterData_Plantst_Scorecard_Master_UserSites" FromRole="v_PTLStaff_MasterData_Plants" ToRole="t_Scorecard_Master_UserSites" />
+        </EntityType>
+        <Association Name="v_PTLStaff_MasterData_Plantst_Scorecard_Master_Template">
+          <End Type="HovisDWModel.v_PTLStaff_MasterData_Plants" Role="v_PTLStaff_MasterData_Plants" Multiplicity="1" />
+          <End Type="HovisDWModel.t_Scorecard_Master_Template" Role="t_Scorecard_Master_Template" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="v_PTLStaff_MasterData_Plants">
+              <PropertyRef Name="Plant" />
+            </Principal>
+            <Dependent Role="t_Scorecard_Master_Template">
+              <PropertyRef Name="SiteCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="v_Hovis_Calendar">
+          <Key>
+            <PropertyRef Name="CalendarDate" />
+            <PropertyRef Name="FinancialYear" />
+            <PropertyRef Name="FinancialQtr" />
+            <PropertyRef Name="FinancialPeriod" />
+            <PropertyRef Name="FinancialWeek" />
+          </Key>
+          <Property Name="CalendarDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CalendarDateChar" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FinancialYear" Type="Int16" Nullable="false" />
+          <Property Name="FinancialQtr" Type="Int16" Nullable="false" />
+          <Property Name="FinancialPeriod" Type="Int16" Nullable="false" />
+          <Property Name="FinancialWeek" Type="Int16" Nullable="false" />
+        </EntityType>
+        <Association Name="t_Scorecard_Master_Categoriest_Scorecard_Details">
+          <End Type="HovisDWModel.t_Scorecard_Master_Categories" Role="t_Scorecard_Master_Categories" Multiplicity="0..1" />
+          <End Type="HovisDWModel.t_Scorecard_Details" Role="t_Scorecard_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Scorecard_Master_Categories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="t_Scorecard_Details">
+              <PropertyRef Name="MasterCatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="t_Scorecard_Minor_Categoriest_Scorecard_Details">
+          <End Type="HovisDWModel.t_Scorecard_Minor_Categories" Role="t_Scorecard_Minor_Categories" Multiplicity="0..1" />
+          <End Type="HovisDWModel.t_Scorecard_Details" Role="t_Scorecard_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Scorecard_Minor_Categories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="t_Scorecard_Details">
+              <PropertyRef Name="MinorCatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="t_Scorecard_Master_UserSites">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserSiteCode" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="v_PTLStaff_MasterData_Plants" Relationship="HovisDWModel.v_PTLStaff_MasterData_Plantst_Scorecard_Master_UserSites" FromRole="t_Scorecard_Master_UserSites" ToRole="v_PTLStaff_MasterData_Plants" />
+        </EntityType>
+        <Association Name="v_PTLStaff_MasterData_Plantst_Scorecard_Master_UserSites">
+          <End Type="HovisDWModel.v_PTLStaff_MasterData_Plants" Role="v_PTLStaff_MasterData_Plants" Multiplicity="1" />
+          <End Type="HovisDWModel.t_Scorecard_Master_UserSites" Role="t_Scorecard_Master_UserSites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="v_PTLStaff_MasterData_Plants">
+              <PropertyRef Name="Plant" />
+            </Principal>
+            <Dependent Role="t_Scorecard_Master_UserSites">
+              <PropertyRef Name="UserSiteCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="t_Scorecard_Target_Details_Upload">
+          <Key>
+            <PropertyRef Name="Recid" />
+          </Key>
+          <Property Name="Recid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Period" Type="Int32" />
+          <Property Name="SiteCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="MinorCatID" Type="Int32" />
+          <Property Name="Target" Type="Double" />
+          <Property Name="Budget" Type="Double" />
+          <Property Name="Target2" Type="Double" />
+          <Property Name="Budget2" Type="Double" />
+          <Property Name="ChangedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HovisDWModelStoreContainer" CdmEntityContainer="HovisDWEntities">
+          <EntitySetMapping Name="t_Scorecard_Details">
+            <EntityTypeMapping TypeName="HovisDWModel.t_Scorecard_Details">
+              <MappingFragment StoreEntitySet="t_Scorecard_Details">
+                <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
+                <ScalarProperty Name="ChangedDate" ColumnName="ChangedDate" />
+                <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="Actual" ColumnName="Actual" />
+                <ScalarProperty Name="MinorCatID" ColumnName="MinorCatID" />
+                <ScalarProperty Name="MasterCatID" ColumnName="MasterCatID" />
+                <ScalarProperty Name="SiteCode" ColumnName="SiteCode" />
+                <ScalarProperty Name="Week" ColumnName="Week" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Recid" ColumnName="Recid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_Scorecard_Master_Template">
+            <EntityTypeMapping TypeName="HovisDWModel.t_Scorecard_Master_Template">
+              <MappingFragment StoreEntitySet="t_Scorecard_Master_Template">
+                <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
+                <ScalarProperty Name="LastChangedDate" ColumnName="LastChangedDate" />
+                <ScalarProperty Name="LastChangedBy" ColumnName="LastChangedBy" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="Actual" ColumnName="Actual" />
+                <ScalarProperty Name="MinorCatID" ColumnName="MinorCatID" />
+                <ScalarProperty Name="MasterCatID" ColumnName="MasterCatID" />
+                <ScalarProperty Name="SiteCode" ColumnName="SiteCode" />
+                <ScalarProperty Name="Recid" ColumnName="Recid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_Scorecard_Master_Categories">
+            <EntityTypeMapping TypeName="HovisDWModel.t_Scorecard_Master_Categories">
+              <MappingFragment StoreEntitySet="t_Scorecard_Master_Categories">
+                <ScalarProperty Name="MasterCatCode" ColumnName="MasterCatCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_Scorecard_Minor_Categories">
+            <EntityTypeMapping TypeName="HovisDWModel.t_Scorecard_Minor_Categories">
+              <MappingFragment StoreEntitySet="t_Scorecard_Minor_Categories">
+                <ScalarProperty Name="MinorCatCode" ColumnName="MinorCatCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_PTLStaff_MasterData_Plants">
+            <EntityTypeMapping TypeName="HovisDWModel.v_PTLStaff_MasterData_Plants">
+              <MappingFragment StoreEntitySet="v_PTLStaff_MasterData_Plants">
+                <ScalarProperty Name="PlantDesc" ColumnName="PlantDesc" />
+                <ScalarProperty Name="Plant" ColumnName="Plant" />
+                <ScalarProperty Name="AutoIDCode" ColumnName="AutoIDCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_Hovis_Calendar">
+            <EntityTypeMapping TypeName="HovisDWModel.v_Hovis_Calendar">
+              <MappingFragment StoreEntitySet="v_Hovis_Calendar">
+                <ScalarProperty Name="FinancialWeek" ColumnName="FinancialWeek" />
+                <ScalarProperty Name="FinancialPeriod" ColumnName="FinancialPeriod" />
+                <ScalarProperty Name="FinancialQtr" ColumnName="FinancialQtr" />
+                <ScalarProperty Name="FinancialYear" ColumnName="FinancialYear" />
+                <ScalarProperty Name="CalendarDateChar" ColumnName="CalendarDateChar" />
+                <ScalarProperty Name="CalendarDate" ColumnName="CalendarDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_Scorecard_Master_UserSites">
+            <EntityTypeMapping TypeName="HovisDWModel.t_Scorecard_Master_UserSites">
+              <MappingFragment StoreEntitySet="t_Scorecard_Master_UserSites">
+                <ScalarProperty Name="UserSiteCode" ColumnName="UserSiteCode" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_Scorecard_Target_Details_Upload">
+            <EntityTypeMapping TypeName="HovisDWModel.t_Scorecard_Target_Details_Upload">
+              <MappingFragment StoreEntitySet="t_Scorecard_Target_Details_Upload">
+                <ScalarProperty Name="ChangedDate" ColumnName="ChangedDate" />
+                <ScalarProperty Name="Budget2" ColumnName="Budget2" />
+                <ScalarProperty Name="Target2" ColumnName="Target2" />
+                <ScalarProperty Name="Budget" ColumnName="Budget" />
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="MinorCatID" ColumnName="MinorCatID" />
+                <ScalarProperty Name="SiteCode" ColumnName="SiteCode" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Recid" ColumnName="Recid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Scorecard.Models.t_Scorecard_Master_Template>
+
+@{
+    ViewBag.Title = "Enter results";
+}
+
+<h2>Record Results</h2>
+
+@using (Html.BeginForm("DataSubmit", "ScorecardTemplate", FormMethod.Post, new { id = "DataSubmit" }))
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-2">
+                <p> User identity:</p>
+            </div>
+            <div class="col-md-3">
+                @Html.TextBox("UserIdentity", ViewBag.UserIdentity as string)
+            </div>
+            <div class="col-md-offset-1 col-md-2">
+                <p> Financial Year:</p>
+            </div>
+            <div class="col-md-3">
+                @Html.TextBox("FinYear", ViewBag.FinYear as string)
+            </div>
+         </div>
+        <div class="row">
+            <div class="col-md-offset-1 col-md-2">
+                <p> User Default site:</p>
+            </div>
+            <div class="col-md-3">
+                @Html.TextBox("DefaultSite", ViewBag.DefaultSite as string)
+            </div>
+            <div class="col-md-offset-1 col-md-2">
+                <p> Financial Week :</p>
+            </div>
+            <div class="col-md-3">
+                @Html.TextBox("FinWeek", ViewBag.FinWeek as string)
+            </div>
+        </div>
+    </div>
+        <div class="form-group">
+            <div class="col-md-offset-1 col-md-11">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </div>
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.v_PTLStaff_MasterData_Plants.PlantDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.t_Scorecard_Master_Categories.MasterCatCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.t_Scorecard_Minor_Categories.MinorCatCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Actual)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Target)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comments)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.v_PTLStaff_MasterData_Plants.PlantDesc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.t_Scorecard_Master_Categories.MasterCatCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.t_Scorecard_Minor_Categories.MinorCatCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Actual)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Target)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments)
+                @Html.HiddenFor(modelItem => item.LastChangedBy)
+                @Html.HiddenFor(modelItem => item.LastChangedDate)
+                @Html.HiddenFor(modelItem => item.Confirmed)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditSubmit", new { id = item.Recid })
+                @*@Html.ActionLink("Details", "Details", new { id=item.Recid }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.Recid })*@
+            </td>
+        </tr>
+    }
+
+</table>

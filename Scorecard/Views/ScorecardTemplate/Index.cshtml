@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Scorecard.Models.t_Scorecard_Master_Template>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Set up the Scorecard Template</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.v_PTLStaff_MasterData_Plants.PlantDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.t_Scorecard_Master_Categories.MasterCatCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.t_Scorecard_Minor_Categories.MinorCatCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Actual)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Target)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.v_PTLStaff_MasterData_Plants.PlantDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.t_Scorecard_Master_Categories.MasterCatCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.t_Scorecard_Minor_Categories.MinorCatCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Actual)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Target)
+            @Html.HiddenFor(modelItem => item.Comments)
+            @Html.HiddenFor(modelItem => item.LastChangedBy)
+            @Html.HiddenFor(modelItem => item.LastChangedDate)
+            @Html.HiddenFor(modelItem => item.Confirmed)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Recid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Recid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Recid })
+        </td>
+    </tr>
+}
+
+</table>

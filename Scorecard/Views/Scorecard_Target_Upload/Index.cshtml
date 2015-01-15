@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Scorecard.Models.t_Scorecard_Target_Details_Upload>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Period)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SiteCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinorCatID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Target)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Budget)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Target2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Budget2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChangedDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Period)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SiteCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MinorCatID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Target)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Budget)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Target2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Budget2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChangedDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Recid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Recid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Recid })
+        </td>
+    </tr>
+}
+
+</table>

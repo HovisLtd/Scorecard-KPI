@@ -1,0 +1,64 @@
+﻿@model Scorecard.Models.t_Scorecard_Master_Template
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4></h4>
+	<hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.v_PTLStaff_MasterData_Plants.PlantDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.v_PTLStaff_MasterData_Plants.PlantDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.t_Scorecard_Master_Categories.MasterCatCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.t_Scorecard_Master_Categories.MasterCatCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.t_Scorecard_Minor_Categories.MinorCatCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.t_Scorecard_Minor_Categories.MinorCatCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Actual)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Actual)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Target)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Target)
+            @Html.HiddenFor(model => model.Comments)
+            @Html.HiddenFor(model => model.LastChangedBy)
+            @Html.HiddenFor(model => model.LastChangedDate)
+            @Html.HiddenFor(model => model.Confirmed)
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Recid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
