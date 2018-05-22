@@ -35,13 +35,9 @@ namespace Scorecard
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "602303626389-dnehtmpglp1eo8jj6de9engej8o2g751.apps.googleusercontent.com",
-                ClientSecret = "D_Q9JuhIecV-C1fftJtVK1_w"
+                ClientId = "*******.apps.googleusercontent.com",
+                ClientSecret = "*******"
             });
-            //{
-            //    ClientId = "602303626389-8nde139jbrlbimv9h3ttk7o30p7st5a5.apps.googleusercontent.com",
-            //    ClientSecret = "Jrd3iKXSpgBAoJItXnqpf-0K"
-            //});
         }
     }
 }
